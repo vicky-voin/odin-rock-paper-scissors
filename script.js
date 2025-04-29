@@ -53,7 +53,29 @@ function playRound(humanChoice, computerChoice){
     return `${winner} is the winner! ${winningChoice} beats ${losingChoice}`
 }
 
+function playGame(){
+    for(let i = 0; i < 5; i++)
+    {
+        console.log(playRound(getHumanChoice(), computerChoice()))
+    }
+
+    console.log(`Final score: Human - ${humanScore}, Computer - ${computerScore}`)
+
+    if(computerScore > humanScore)
+    {
+        console.log("Sorry, the Computer won! Try again!")
+    }
+    else if (computerScore === humanScore)
+    {
+        console.log("It's a tie! No winners! But also no losers!")
+    }
+    else
+    {
+        console.log("Congratulations, Human - you won!")
+    }
+}
+
 let humanScore = 0
 let computerScore = 0
 
-console.log(playRound(getHumanChoice(), computerChoice()))
+playGame()
