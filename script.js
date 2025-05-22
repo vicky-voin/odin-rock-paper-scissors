@@ -50,32 +50,50 @@ function playRound(humanChoice, computerChoice){
         }
     }
 
-    return `${winner} is the winner! ${winningChoice} beats ${losingChoice}`
+    displayRoundScore();
+    outputField.textContent = `${winner} is the winner! ${winningChoice} beats ${losingChoice}`
+
+    if(humanScore == 5 || computerScore == 5)
+    {
+        displayGameResult();
+    }
 }
 
-function playGame(){
-    for(let i = 0; i < 5; i++)
-    {
-        console.log(playRound(getHumanChoice(), computerChoice()))
-    }
-
-    console.log(`Final score: Human - ${humanScore}, Computer - ${computerScore}`)
+function displayGameResult(){
 
     if(computerScore > humanScore)
     {
-        console.log("Sorry, the Computer won! Try again!")
+        gameResult.textContent = "Sorry, the Computer won! Try again!";
     }
     else if (computerScore === humanScore)
     {
-        console.log("It's a tie! No winners! But also no losers!")
+        gameResult.textContent = "It's a tie! No winners! But also no losers!";
     }
     else
     {
-        console.log("Congratulations, Human - you won!")
+        gameResult.textContent = "Congratulations, Human - you won!";
     }
+}
+
+function displayRoundScore()
+{
+    humanScoreField.textContent =`Human: ${humanScore}`;
+    computerScoreField.textContent =`Computer: ${computerScore}`;
 }
 
 let humanScore = 0
 let computerScore = 0
 
-playGame()
+const rockButton = document.querySelector(".rock");
+const paperButton = document.querySelector(".paper");
+const scissorsButton = document.querySelector(".scissors");
+
+const humanScoreField = document.querySelector(".humanScore");
+const computerScoreField = document.querySelector(".computerScore");
+
+const outputField = document.querySelector(".output");
+const gameResult = document.querySelector(".gameResult");
+
+rockButton.addEventListener("click", ()=>playRound("rock", computerChoice()));
+paperButton.addEventListener("click", ()=>playRound("paper", computerChoice()));
+scissorsButton.addEventListener("click", ()=>playRound("scissors", computerChoice()));
